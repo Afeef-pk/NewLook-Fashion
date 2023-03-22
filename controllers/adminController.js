@@ -253,9 +253,13 @@ const addNewCategory = async (req, res) => {
         if (existCategory) {
             res.render('new-categories', { message: "Category already exist" })
         } else {
+            let img
+            if (req.file) {
+                img = req.file.filename
+            }
             const category = new Category({
                 categoryName: req.body.categoryname,
-                image: req.file.filename
+                image: img
             })
             const categoryData = await category.save()
             if (categoryData) {
@@ -283,10 +287,10 @@ const loadEditCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
 
     try {
-      if(req.file){
-        var image = req.file.filename
-      }
-        const categoryUpdatedData = await Category.findByIdAndUpdate({ _id: req.body.category_id }, { $set: { categoryName: req.body.categoryname,  image: image} })
+        if (req.file) {
+            var image = req.file.filename
+        }
+        const categoryUpdatedData = await Category.findByIdAndUpdate({ _id: req.body.category_id }, { $set: { categoryName: req.body.categoryname, image: image } })
         if (categoryUpdatedData) {
             res.redirect('/admin/category_manage')
         } else {
@@ -340,16 +344,16 @@ const NewCoupon = async (req, res) => {
 
     try {
         const code = req.body.code
-        const existCoupon = await Coupon.findOne({ couponCode: { $regex: '.*' + code + '.*', $options: 'i' }})
-        
+        const existCoupon = await Coupon.findOne({ couponCode: { $regex: '.*' + code + '.*', $options: 'i' } })
+
         if (existCoupon) {
             res.render('add-coupon', { message: "coupon already exist" })
         } else {
             const coupon = new Coupon({
                 couponCode: req.body.code,
                 discount: req.body.discount,
-                minAmount:req.body.minAmount,
-                maxDiscount:req.body.maxDiscount
+                minAmount: req.body.minAmount,
+                maxDiscount: req.body.maxDiscount
             })
             const couponData = await coupon.save()
             if (couponData) {
@@ -366,7 +370,7 @@ const NewCoupon = async (req, res) => {
 const deleteCoupons = async (req, res) => {
 
     try {
-         
+
         await Coupon.deleteOne({ _id: req.query.id })
         res.redirect('/admin/coupons')
     } catch (error) {

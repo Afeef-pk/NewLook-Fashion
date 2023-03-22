@@ -6,7 +6,6 @@ const randormString = require("randomstring")
 const nodemailer = require("nodemailer")
 const env = require('dotenv').config();
 
-//passwrodHashing
 const securePassword = async (password) => {
     try {
         const passwordHash = await bcrypt.hash(password, 10)
@@ -16,7 +15,6 @@ const securePassword = async (password) => {
     }
 }
 
-//load sign page
 const loadSignup = async (req, res) => {
     try {
         res.render("signup")
@@ -25,7 +23,6 @@ const loadSignup = async (req, res) => {
     }
 }
 
-//sending otp for registration
 const sendRegisterOtp = async (req, res) => {
     try {
         const checkExist = await User.findOne({ mobile: req.body.phone })
@@ -46,7 +43,6 @@ const sendRegisterOtp = async (req, res) => {
     }
 }
 
-//load register enter otp page
 const loadEnterOtp = async (req, res) => {
     try {
         if (req.session.mobile) {
@@ -95,7 +91,6 @@ const verifyOtpAndSave = async (req, res) => {
     }
 }
 
-// for Load Login page
 const loadLogin = async (req, res) => {
     try {
         res.render("login")
@@ -104,7 +99,6 @@ const loadLogin = async (req, res) => {
     }
 }
 
-//verify customer Login
 const verifyLogin = async (req, res) => {
 
     try {
@@ -137,7 +131,6 @@ const verifyLogin = async (req, res) => {
     }
 }
 
-//load forgot password 
 const forgetLoad = async (req, res) => {
     try {
         res.render('forgot')
@@ -146,7 +139,6 @@ const forgetLoad = async (req, res) => {
     }
 }
 
-//  send mail for reset password
 const sendResetPasswordMail = async (name, email, token) => {
     try {
         const transporter = nodemailer.createTransport({
@@ -177,7 +169,6 @@ const sendResetPasswordMail = async (name, email, token) => {
     }
 }
 
-//for forget password verify
 const forgetVerify = async (req, res) => {
 
     try {
@@ -200,7 +191,6 @@ const forgetVerify = async (req, res) => {
     }
 }
 
-// for load reset password page
 const resetPasswordLoad = async (req, res) => {
 
     try {
@@ -284,18 +274,6 @@ const otpVerification = async (req, res) => {
     }
 }
 
-// for load home page
-// const loadHome = async (req, res) => {
-
-//     try {
-//         const productData = await Product.find()
-//         const user = await User.findById({ _id: req.session.user_id })
-//         res.render('home', { product: productData, user })
-//     } catch (error) {
-//         console.log(error.message)
-//     }
-// }
-
 const loadProfile = async (req, res) => {
 
     try {
@@ -322,14 +300,13 @@ const updateUserDeatails = async (req, res) => {
         const userData = await User.findByIdAndUpdate({ _id: req.body.user_id }, { $set: { name: req.body.name, email: req.body.email } })
         const address = {
             name: req.body.addressname,
-            pincode:req.body.pin,
+            pincode: req.body.pin,
             landmark: req.body.landmark,
-            address : req.body.address,
-            mobile:req.body.mobile
+            address: req.body.address,
+            mobile: req.body.mobile
         }
-       // console.log(address);
-        if(address){
-            const userData = await User.findByIdAndUpdate({ _id: req.body.user_id }, { $set: { address : address}  } )
+        if (address) {
+            const userData = await User.findByIdAndUpdate({ _id: req.body.user_id }, { $set: { address: address } })
         }
         if (userData) {
             res.redirect('/profile')
@@ -388,7 +365,6 @@ const updateNewAdress = async (req, res) => {
     }
 }
 
-//user logout
 const userLogout = async (req, res) => {
 
     try {
