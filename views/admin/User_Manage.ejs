@@ -1,0 +1,142 @@
+<%- include('../layouts/header.ejs') %>
+
+
+	<div id="mySidenav" class="sidenav">
+		<p class="logo">DECORE FASHIONS</p>
+		<a href="/admin/dashboard" class="icon-a"><i class="fa fa-dashboard icons"></i> Dashboard</a>
+		<a href="/admin/user_manage" id="current-list-item" class="icon-a"><i class="fa fa-users icons"></i>
+			Customers</a>
+		<a href="/admin/product_manage" class="icon-a"><i class="fa fa-shopping-cart icons"></i> Products</a>
+		<a href="/admin/category_manage" class="icon-a"><i class="fa fa-list icons"></i> Category</a>
+		<a href="/admin/orders" class="icon-a"><i class="fa fa-shopping-bag icons"></i> Orders</a>
+		<a href="/admin/coupons" class="icon-a"><i class="fa fa-window-maximize icons"></i> Coupons</a>
+		<a href="/admin/logout" class="icon-a"><i class="fa fa-user icons"></i> Logout</a>
+	</div>
+
+	<div id="main">
+
+		<div class="head">
+			<div class="col-div-6">
+				<span style="font-size:30px;cursor:pointer; color: white;" class="nav">☰ Customers</span>
+				<span style="font-size:30px;cursor:pointer; color: white;" class="nav2">☰ Customers</span>
+			</div>
+
+			<div class="col-div-6">
+				<div class="profile">
+
+					<img src="https://w7.pngwing.com/pngs/429/434/png-transparent-computer-icons-icon-design-business-administration-admin-icon-hand-monochrome-silhouette-thumbnail.png"
+						class="pro-img" />
+					<p>ADMIN<span></span></p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="clearfix"></div>
+		<br />
+
+
+		<div class="clearfix"></div>
+		<br>
+		<div class="col-div-8">
+			<div class="box-8">
+				<div class="content-box">
+					<p>Customers List </p>
+					<br />
+					<div class="search-container">
+						<form class="d-flex">
+							<input class="form-control me-2" type="search" placeholder="Search User "
+								aria-label="Search" name="search">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+						</form>
+					</div>
+					<table>
+						<tr>
+							<th scope="col">No</th>
+							<th>Name</th>
+							<th>Contact</th>
+							<th>E-mail</th>
+							<th>Status</th>
+							<th>view</th>
+						</tr>
+
+						<tbody>
+							<% if (users.length> 0){
+								for (let i=0 ; i<users.length ; i++){ %>
+									<tr>
+										<td>
+											<%= i+1 %>
+										</td>
+										<td>
+											<%= users[i].name %>
+										</td>
+
+										<td>
+											<%= users[i].mobile %>
+										</td>
+
+										<td>
+											<%= users[i].email %>
+										</td>
+
+										<% if(users[i].is_blocked===0){ %>
+											<td style="color: chartreuse;">
+												Active
+											</td>
+											<% }else{ %>
+												<td style="color: rgb(255, 0, 0);">
+													blocked
+												</td>
+												<% }%>
+
+													<td><a href="/admin/view_user?id=<%= users [i]._id  %>"><button
+																class="btn btn-primary">view</button></a></td>
+									</tr>
+
+									<% } } else{ %>
+										<tr>
+											<td colspan="5">User Not Found</td>
+										</tr>
+										<% } %>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="clearfix"></div>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+
+		$(".nav").click(function () {
+			$("#mySidenav").css('width', '70px');
+			$("#main").css('margin-left', '70px');
+			$(".logo").css('visibility', 'hidden');
+			$(".logo span").css('visibility', 'visible');
+			$(".logo span").css('margin-left', '-10px');
+			$(".icon-a").css('visibility', 'hidden');
+			$(".icons").css('visibility', 'visible');
+			$(".icons").css('margin-left', '-8px');
+			$(".nav").css('display', 'none');
+			$(".nav2").css('display', 'block');
+		});
+
+		$(".nav2").click(function () {
+			$("#mySidenav").css('width', '300px');
+			$("#main").css('margin-left', '300px');
+			$(".logo").css('visibility', 'visible');
+			$(".icon-a").css('visibility', 'visible');
+			$(".icons").css('visibility', 'visible');
+			$(".nav").css('display', 'block');
+			$(".nav2").css('display', 'none');
+		});
+
+	</script>
+
+	<%- include('../layouts/footer.ejs') %>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description"
+		content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+	<!-- title -->
+	<title>DECORE FASHIONS</title>
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="assets/css/all.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="assets/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="assets/css/responsive.css">
+
+</head>
+
+<body>
+
+
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="assets/img/logo.png" alt="" width="50px">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li><a href="/">Home</a></li>
+								<li><a href="/shop">Shop</a></li>
+								<li class="current-list-item"><a href="/cart">Cart</a></li>
+								<li><a href="/orders">Orders</a></li>
+								<li><a href="/wishlist">wishlist</a></li>
+								<li><a href="/contact">Contact</a></li>
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="cart.html"><i
+												class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon" href="#"><i
+												class="fas fa-search"></i></a>
+									</div>
+								</li>
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Please Checkout</p>
+						<h1>Cart</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- cart -->
+	<% if( count> 0) { %>
+		
+		<div class="cart-section mt-150 mb-150">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-lg-8 col-md-12">
+						<div class="cart-table-wrap">
+
+							<table class="cart-table">
+								<thead class="cart-table-head">
+									<tr class="table-head-row">
+										<th class="product-remove"></th>
+										<th class="product-image">Product Image</th>
+										<th class="product-name">Name</th>
+										<th class="product-price">Price</th>
+										<th class="product-quantity">Quantity</th>
+										<th class="product-total">Total</th>
+									</tr>
+								</thead>
+
+								<% for(let i=0 ; i<userCart.products.length ; i++) {%>
+									<tbody>
+										<tr class="table-body-row">
+
+											<td class="product-remove"><a
+													href="/remove-cart?id=<%= products[i]._id %>"><i
+														class="far fa-window-close"></i></a>
+											</td>
+
+											<td class="product-image"><img src="/images/<%= products[i].image[0] %>"
+													alt="">
+											</td>
+											<td class="product-name">
+												<%= products[i].name %>
+											</td>
+											<td class="product-price">
+												<%= products[i].price %>
+											</td>
+
+
+
+											<td class="product-quantity">
+												<button class="btn btn-dark"
+													onclick="changeQuantity( '<%= userCart._id%>' , '<%=products[i]._id%>' ,-1, '<%=userCart.products[i]._id %>'  )">-
+												</button>
+												<span id="<%=products[i]._id%>">
+													<%= userCart.products[i].quantity %>
+												</span>
+												<button class="btn btn-dark"
+													onclick="changeQuantity( '<%= userCart._id%>' , '<%=products[i]._id%>' ,1 , '<%=userCart.products[i]._id %>' )">
+													+</button>
+												<!-- <input type="number"
+														placeholder="1" name="quantity">
+														 -->
+											</td>
+
+											<td class="product-total" id="<%= userCart.products[i]._id%>">
+												<%=products[i].price* userCart.products[i].quantity %>
+
+											</td>
+
+										</tr>
+									</tbody>
+									<% } %>
+
+							</table>
+						</div>
+					</div>
+
+					<div class="col-lg-4">
+						<div class="total-section">
+							<table class="total-table">
+								<thead class="total-table-head">
+									<tr class="table-total-row">
+										<th>Total</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="total-data">
+										<td><strong>Subtotal: </strong></td>
+										<td>Rs <span id="userCartTotal">
+												<%= userCart.Total %>
+											</span></td>
+									</tr>
+									<tr class="total-data">
+										<td><strong>Discount: </strong></td>
+										<td>Rs  <span id="discountprice"><%= userCart.discountPrice %></span> </td>
+									</tr>
+									<tr class="total-data">
+										<td><strong>Total: </strong></td>
+										<td>Rs <span id="userCartTotal2">
+												<%= userCart.Total-userCart.discountPrice %>
+											</span></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="cart-buttons">
+								<!-- <input type="submit" value="Update Cart"> -->
+
+								<!-- <a href="/cart" class="boxed-btn"> Update Cart</a> -->
+								<a href="/checkout" class="boxed-btn black">Check Out</a>
+							</div>
+						</div>
+
+						<div class="coupon-section">
+							<h3>Apply Coupon</h3>
+							<div class="coupon-form-wrap">
+								<form action="/apply-code" method="post">
+									<p><input type="text" placeholder="Coupon" name="couponcode"> </p>
+									<input type="hidden" name="cart_id" value="<%= userCart._id %>">
+									<p><input type="submit" value="Apply" onsubmit="applyCoupon()"></p>
+									
+									<!-- <p><a href="" class="boxed-btn" onclick="applyCoupon(couponcode)">Apply</a></p> -->
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- end cart -->
+		<% } else { %>
+
+
+
+
+			<div class="container-fluid  mt-100">
+				<div class="row">
+
+					<div class="col-md-12">
+
+						<div class="card">
+							<div class="card-header">
+								<h5>Cart</h5>
+							</div>
+							<div class="card-body cart">
+								<div class="col-sm-12 empty-cart-cls text-center">
+									<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
+										class="img-fluid mb-4 mr-3">
+									<h3><strong>Your Cart is Empty</strong></h3>
+									<h4>Add items to it now</h4>
+									<a href="/shop" class="btn btn-primary cart-btn-transform m-3"
+										data-abc="true">continue shopping</a>
+
+
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+
+			<% } %>
+				<!-- logo carousel -->
+				<div class="logo-carousel-section">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="logo-carousel-inner">
+									<div class="single-logo-item">
+										<img src="assets/img/company-logos/1.png" alt="">
+									</div>
+									<div class="single-logo-item">
+										<img src="assets/img/company-logos/2.png" alt="">
+									</div>
+									<div class="single-logo-item">
+										<img src="assets/img/company-logos/3.png" alt="">
+									</div>
+									<div class="single-logo-item">
+										<img src="assets/img/company-logos/4.png" alt="">
+									</div>
+									<div class="single-logo-item">
+										<img src="assets/img/company-logos/5.png" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end logo carousel -->
+
+				<!-- footer -->
+				<div class="footer-area">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-3 col-md-6">
+								<div class="footer-box about-widget">
+									<h2 class="widget-title">About us</h2>
+									<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem
+										accusantium
+										doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">
+								<div class="footer-box get-in-touch">
+									<h2 class="widget-title">Get in Touch</h2>
+									<ul>
+										<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
+										<li>support@d-core.com</li>
+										<li>+00 111 222 3333</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">
+								<div class="footer-box pages">
+									<h2 class="widget-title">Pages</h2>
+									<ul>
+										<li><a href="index.html">Home</a></li>
+										<li><a href="about.html">About</a></li>
+										<li><a href="services.html">Shop</a></li>
+										<li><a href="news.html">News</a></li>
+										<li><a href="contact.html">Contact</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">
+								<div class="footer-box subscribe">
+									<h2 class="widget-title">Subscribe</h2>
+									<p>Subscribe to our mailing list to get the latest updates.</p>
+									<form action="index.html">
+										<input type="email" placeholder="Email">
+										<button type="submit"><i class="fas fa-paper-plane"></i></button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end footer -->
+
+				<!-- copyright -->
+				<div class="copyright">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-6 col-md-12">
+								<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>, All
+									Rights
+									Reserved.</p>
+							</div>
+							<div class="col-lg-6 text-right col-md-12">
+								<div class="social-icons">
+									<ul>
+										<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+										<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+										<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+										<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+										<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end copyright -->
+
+				<!-- jquery -->
+				<script src="assets/js/jquery-1.11.3.min.js"></script>
+				<!-- bootstrap -->
+				<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+				<!-- count down -->
+				<script src="assets/js/jquery.countdown.js"></script>
+				<!-- isotope -->
+				<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+				<!-- waypoints -->
+				<script src="assets/js/waypoints.js"></script>
+				<!-- owl carousel -->
+				<script src="assets/js/owl.carousel.min.js"></script>
+				<!-- magnific popup -->
+				<script src="assets/js/jquery.magnific-popup.min.js"></script>
+				<!-- mean menu -->
+				<script src="assets/js/jquery.meanmenu.min.js"></script>
+				<!-- sticker js -->
+				<script src="assets/js/sticker.js"></script>
+				<!-- main js -->
+				<script src="assets/js/main.js"></script>
+
+				<script>
+					function changeQuantity(cartID, productID, count, userProductID) {
+						let quantity = parseInt(document.getElementById(productID).innerHTML)
+						let currentTotal = parseInt(document.getElementById(userProductID).innerHTML)
+						count = parseInt(count)
+						$.ajax({
+							url: '/change-product-quantity',
+							data: {
+								cart: cartID,
+								product: productID,
+								count: count,
+								quantity: quantity,
+								currentTotal: currentTotal
+							},
+							method: 'post',
+							success: (response) => {
+								if (response.empty) {
+									alert("Product Removed from cart")
+									location.reload()
+								} else {
+									document.getElementById(productID).innerHTML = quantity + count
+									document.getElementById(userProductID).innerHTML = response.currentTotal
+									document.getElementById('userCartTotal').innerHTML = response.sum
+									document.getElementById('userCartTotal2').innerHTML = response.sum-response.discount
+								}
+							}
+						})
+					}
+
+					function applyCoupon(code,cartID) {
+
+						$.ajax({
+							url: '/apply-code',
+							
+							method: 'post',
+							success: (response) => {
+								
+									document.getElementById('discountprice').textContent = response.discount
+								
+							}
+						})
+					}
+				</script>
+
+</body>
+
+</html>

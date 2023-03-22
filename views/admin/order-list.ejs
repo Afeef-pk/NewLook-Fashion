@@ -1,0 +1,106 @@
+<%- include('../layouts/header.ejs') %>
+
+	<div id="mySidenav" class="sidenav">
+		<p class="logo">DECORE FASHIONS</p>
+		<a href="/admin/dashboard" class="icon-a"><i class="fa fa-dashboard icons"></i> Dashboard</a>
+		<a href="/admin/user_manage" class="icon-a"><i class="fa fa-users icons"></i> Customers</a>
+		<a href="/admin/product_manage" class="icon-a"><i class="fa fa-shopping-cart  icons"></i> Products</a>
+		<a href="/admin/category_manage" class="icon-a"><i class="fa fa-list icons"></i> Category</a>
+		<a href="/admin/orders" id="current-list-item" class="icon-a"><i
+				class="fa fa-shopping-bag icons current-list-item"></i> Orders </a>
+		<a href="/admin/coupons" class="icon-a"><i class="fa fa-window-maximize icons"></i> Coupons</a>
+		<a href="/admin/logout" class="icon-a"><i class="fa fa-user icons"></i> Logout</a>
+	</div>
+
+
+	<div id="main">
+
+		<div class="head">
+			<div class="col-div-6">
+				<span style="font-size:30px;cursor:pointer; color: white;" class="nav">☰ ORDER</span>
+				<span style="font-size:30px;cursor:pointer; color: white;" class="nav2">☰ ORDER</span>
+			</div>
+
+			<div class="col-div-6">
+				<div class="profile">
+
+					<img src="https://w7.pngwing.com/pngs/429/434/png-transparent-computer-icons-icon-design-business-administration-admin-icon-hand-monochrome-silhouette-thumbnail.png"
+						class="pro-img" />
+					<p>ADMIN<span></span></p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="clearfix"></div>
+		<br />
+
+
+		<div class="clearfix"></div>
+		<br />
+		<div class="col-div-8">
+			<div class="box-8">
+				<div class="content-box">
+
+
+
+					<br />
+					<div class="container-fluid">
+						<form class="d-flex">
+							<input class="form-control me-2" type="search" placeholder="Search Order "
+								aria-label="Search" name="search">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+						</form>
+					</div>
+					<table>
+						<tr>
+							<th>Customer Name</th>
+							<th>Order id</th>
+							<th>Product Name</th>
+							<th>price</th>
+							<th>Status</th>
+
+						</tr>
+
+
+
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="clearfix"></div>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+
+		$(".nav").click(function () {
+			$("#mySidenav").css('width', '70px');
+			$("#main").css('margin-left', '70px');
+			$(".logo").css('visibility', 'hidden');
+			$(".logo span").css('visibility', 'visible');
+			$(".logo span").css('margin-left', '-10px');
+			$(".icon-a").css('visibility', 'hidden');
+			$(".icons").css('visibility', 'visible');
+			$(".icons").css('margin-left', '-8px');
+			$(".nav").css('display', 'none');
+			$(".nav2").css('display', 'block');
+		});
+
+		$(".nav2").click(function () {
+			$("#mySidenav").css('width', '300px');
+			$("#main").css('margin-left', '300px');
+			$(".logo").css('visibility', 'visible');
+			$(".icon-a").css('visibility', 'visible');
+			$(".icons").css('visibility', 'visible');
+			$(".nav").css('display', 'block');
+			$(".nav2").css('display', 'none');
+		});
+
+	</script>
+
+	<%- include('../layouts/footer.ejs') %>
