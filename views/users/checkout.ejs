@@ -1,446 +1,398 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../layouts/userHeader.ejs') %>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description"
-		content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+	<!-- Header -->
+	<header class="header-v4">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
+					</div>
 
-	<!-- title -->
-	<title>DECORE FASHIONS</title>
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							My Account
+						</a>
+					</div>
+				</div>
+			</div>
 
-	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
-	<!-- google font -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-	<!-- fontawesome -->
-	<link rel="stylesheet" href="assets/css/all.min.css">
-	<!-- bootstrap -->
-	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-	<!-- owl carousel -->
-	<link rel="stylesheet" href="assets/css/owl.carousel.css">
-	<!-- magnific popup -->
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
-	<!-- animate css -->
-	<link rel="stylesheet" href="assets/css/animate.css">
-	<!-- mean menu css -->
-	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
-	<!-- main style -->
-	<link rel="stylesheet" href="assets/css/main.css">
-	<!-- responsive -->
-	<link rel="stylesheet" href="assets/css/responsive.css">
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
 
-</head>
+					<!-- Logo desktop -->
+					<a href="#" class="logo">
+						<img src="assets/images/icons/logo-01.png" alt="IMG-LOGO">
+					</a>
 
-<body>
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li>
+								<a href="/">Home</a>
+							</li>
 
-	<!-- header -->
-	<div class="top-header-area" id="sticker">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-sm-12 text-center">
-					<div class="main-menu-wrap">
-						<!-- logo -->
-						<div class="site-logo">
-							<a href="index.html">
-								<img src="assets/img/logo.png" alt="" width="50px">
+							<li>
+								<a href="/shop">Shop</a>
+							</li>
+
+							<li class="active-menu">
+								<a href="/cart">Cart</a>
+							</li>
+
+							<li>
+								<a href="/contact">Contact</a>
+							</li>
+
+
+						</ul>
+					</div>
+
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+
+
+						<% if(typeof userCart=='undefined' ){ %>
+							<a href="/cart"
+								class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+								data-notify="0">
+								<i class="zmdi zmdi-shopping-cart"></i>
 							</a>
-						</div>
-						<!-- logo -->
 
-						<!-- menu start -->
-						<nav class="main-menu">
-							<ul>
-								<li><a href="/">Home</a></li>
-								<li><a href="/shop">Shop</a></li>
-								<li class="current-list-item"><a href="/cart">Cart</a></li>
-								<li><a href="/orders">Orders</a></li>
-								<li><a href="/wishlist">wishlist</a></li>
-								<li><a href="/contact">Contact</a></li>
+							<a href="/wishlist"
+								class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+								data-notify="0">
+								<i class="zmdi zmdi-favorite-outline"></i>
+							</a>
+							<% } else { %>
+								<a href="/cart"
+									class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+									data-notify="<%= userCart.products.length %>">
+									<i class="zmdi zmdi-shopping-cart"></i>
+								</a>
 
-								<li>
-									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i
-												class="fas fa-shopping-cart"></i></a>
-										<a class="mobile-hide search-bar-icon" href="#"><i
-												class="fas fa-search"></i></a>
-									</div>
-								</li>
-							</ul>
-						</nav>
-						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-						<div class="mobile-menu"></div>
-						<!-- menu end -->
+								<a href="/wishlist"
+									class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+									data-notify="0">
+									<i class="zmdi zmdi-favorite-outline"></i>
+								</a>
+								<% } %>
 					</div>
-				</div>
+				</nav>
 			</div>
 		</div>
-	</div>
-	<!-- end header -->
 
-	<!-- search area -->
-	<div class="search-area">
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->
+			<div class="logo-mobile">
+				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			</div>
+
+			<!-- Icon header -->
+			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+					<i class="zmdi zmdi-search"></i>
+				</div>
+
+				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+					data-notify="2">
+					<i class="zmdi zmdi-shopping-cart"></i>
+				</div>
+
+				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+					data-notify="0">
+					<i class="zmdi zmdi-favorite-outline"></i>
+				</a>
+			</div>
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
+
+
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				<li>
+					<div class="left-top-bar">
+						Free shipping for standard order over $100
+					</div>
+				</li>
+
+				<li>
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							Help & FAQs
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							My Account
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							EN
+						</a>
+
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							USD
+						</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a href="index.html">Home</a>
+					<ul class="sub-menu-m">
+						<li><a href="index.html">Homepage 1</a></li>
+						<li><a href="home-02.html">Homepage 2</a></li>
+						<li><a href="home-03.html">Homepage 3</a></li>
+					</ul>
+					<span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+				</li>
+
+				<li>
+					<a href="product.html">Shop</a>
+				</li>
+
+				<li>
+					<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+				</li>
+
+				<li>
+					<a href="blog.html">Blog</a>
+				</li>
+
+				<li>
+					<a href="about.html">About</a>
+				</li>
+
+				<li>
+					<a href="contact.html">Contact</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="images/icons/icon-close2.png" alt="CLOSE">
+				</button>
+
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</header>
+
+
+
+
+
+	<!-- Breadcrumb Section Begin -->
+	<section class="breadcrumb-option">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+					<div class="breadcrumb__text">
+						<h4>Check Out</h4>
+						<div class="breadcrumb__links">
+							<a href="/">Home</a>
+							<a href="/shop">Shop</a>
+							<span>Check Out</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- end search arewa -->
+	</section>
+	<!-- Breadcrumb Section End -->
 
-	<!-- breadcrumb-section -->
-	<div class="breadcrumb-section breadcrumb-bg">
+
+	<section class="checkout spad">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2 text-center">
-					<div class="breadcrumb-text">
-						<p></p>
-						<h1>Check Out Product</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end breadcrumb section -->
+			<div class="checkout__form">
 
-	<!-- check out section -->
-	<div class="checkout-section mt-150 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8">
-					<div class="checkout-accordion-wrap">
-						<div class="accordion" id="accordionExample">
-							<div class="card single-accordion">
-								<div class="card-header" id="headingOne">
-									<h5 class="mb-0">
-										<button class="btn btn-link" type="button" data-toggle="collapse"
-											data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-											Shipping Address
-										</button>
-									</h5>
-								</div>
+				<div class="row">
+					<div class="col-lg-8 col-md-6">
 
-								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-									data-parent="#accordionExample">
-									<div class="card-body">
-										<p style="font-weight: 700;">Deliver Here</p>
-										<div>
-											<form action="/checkout" method="POST">
-												
-											<% for(let i=0 ; i< user.address.length ; i++) {%>
-												<input type="radio" name="address" value="<%=[i]%>" required>
-												<div class="col-lg-8">
-													
-													<div class="card mb-4">
-														
-														<div class="card-body">
-															
-															<div class="row">
-																
-																<div class="col-sm-3">
-																	<p class="mb-0">Address <%= [i+1] %></p>
-																</div>
-																<div class="col-sm-9">
-																	<p class="text-muted mb-0">
-																		<%= user.address[i].name %>
-																		<%=user.address[i].pincode %>
-																		<br>
-																		<%=user.address[i].landmark %>
-																		<%= user.address[i].address%>
-																	</p>
-																</div>
-															</div>
-															
-															<!-- <div class="row">
-																<div class="col-sm-3">
-																	<p class="mb-0">Pincode</p>
-																</div>
-																<div class="col-sm-9">
-																	<p class="text-muted mb-0"><%=user.address[i].pincode %></p>
-																</div>
-															</div>
-															<hr>
-															<div class="row">
-																<div class="col-sm-3">
-																	<p class="mb-0">LandMark</p>
-																</div>
-																<div class="col-sm-9">
-																	<p class="text-muted mb-0">   <%=user.address[i].landmark %></p>
-																</div>
-															</div>
-															<hr>
-															<div class="row">
-																<div class="col-sm-3">
-																	<p class="mb-0">Address</p>
-																</div>
-																<div class="col-sm-9">
-																	<p class="text-muted mb-0"><%= user.address[i].address%></p>
-																</div>
-															</div>
-															<hr>
-															<div class="row">
-																<div class="col-sm-3">
-																	<p class="mb-0">Phone</p>
-																</div>
-																<div class="col-sm-9">
-																	<p class="text-muted mb-0"><%= user.address[i].mobile %></p>
-																</div>
-															</div> -->
-															
-														</div>
-													</div>
-												</div>
-												<% } %>
-												<a href="/new_address?id=<%= user._id %>">New Address  </a>
-										</div>
-										<!-- <div class="billing-address-form">
-											<form action="index.html">
-												<p><input type="text" placeholder="Name"></p>
-												<p><input type="email" placeholder="Email"></p>
-												<p><input type="text" placeholder="Address"></p>
-												<p><input type="tel" placeholder="Phone"></p>
-												<p><textarea name="bill" id="bill" cols="30" rows="10"
-														placeholder="Say Something"></textarea></p>
-											</form>
-										</div> -->
-									</div>
-								</div>
-							</div>
-							<!-- <div class="card single-accordion">
-								<div class="card-header" id="headingTwo">
-									<h5 class="mb-0">
-										<button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-											data-target="#collapseTwo" aria-expanded="false"
-											aria-controls="collapseTwo">
-											Shipping Address
-										</button>
-									</h5>
-								</div>
-								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-									data-parent="#accordionExample">
-									<div class="card-body">
-										<div class="shipping-address-form">
-											<p>Your shipping address form is here.</p>
-										</div>
-									</div>
-								</div>
-							</div> -->
-							<div class="card single-accordion">
-								<div class="card-header" id="headingThree">
-									<h5 class="mb-0">
-										<button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-											data-target="#collapseThree" aria-expanded="false"
-											aria-controls="collapseThree">
-											 Payment Method
-										</button>
-									</h5>
-								</div>
-								<div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-									data-parent="#accordionExample">
-									<div class="card-body">
-										<div class="card-details">
-											<!-- <p>Your card details goes here.</p> -->
-											<input type="radio" name="payment" value="cod" required> Cash On Delivery
-											
-											<br><br>
-											<p style="text-decoration: line-through;">GOOGLE PAY	</p>
-											<br>
-											<p style="text-decoration: line-through;">PAYTM	</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 
-					</div>
-				</div>
-
-				<div class="col-lg-4">
-					<div class="order-details-wrap">
-						<table class="order-details">
-							<thead>
-								<tr>
-									<th>Your order Details</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody class="order-details-body">
-								<tr>
-									<td>Product</td>
-									<td>Total</td>
-								</tr>
-								<% userCart.products.forEach(element => { %>
-									<tr>
-									<td> <%=element.name %></td>
-									<td>Rs <%=element.price %></td>
-								</tr>
-								<% }); %>
-								
-								<!-- <tr>
-									<td>Jeans</td>
-									<td>Rs 700</td>
-								</tr> -->
-
-							</tbody>
-							<tbody class="checkout-details">
-								<tr>
-									<td><b> Subtotal </b></td>
-									<td><b> Rs <%= userCart.Total%> </b></td>
-								</tr>
-								<tr>
-									<td><b> Discount</b></td>
-									<td><b> Rs <%= userCart.discountPrice%> </b></td>
-								</tr>
-								<tr>
-									<td><b> Pay </b></td>
-									<td><b> Rs <%= userCart.Total-userCart.discountPrice%></b></td>
-								</tr>
-							</tbody>
-						</table>
+						<h2>Select Address</h2>
 						<br>
-						<!-- <a href="/order_placed" class="boxed-btn">place </a> -->
-						<button type="submit" class="btn" style="background-color: #F28123; " > Place Order</button>
+						<form action="/checkout" method="post">
+							<div>
+								<select id="Address">
+									<% for(let i=0 ; i< user.address.length ; i++) {%>
+										<option value="<%=[i] %>">
+											<%= user.address[i].name%> , <%=user.address[i].pincode %>,
+													<%=user.address[i].landmark %> ,<%= user.address[i].address%>
+										</option>
+										<% } %>
+								</select>
+							</div>
+							<br><br>
+							<form action="/checkout_address" method="post">
+
+								<h6 class="checkout__title">Shipping Address</h6>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="checkout__input">
+											<p>Name<span>*</span></p>
+											<input type="text" name="name">
+										</div>
+									</div>
+
+								</div>
+
+								<div class="checkout__input">
+									<p>Landmark<span>*</span></p>
+									<input type="text" placeholder="Street Address" class="checkout__input__add"
+										name="landmark">
+
+								</div>
+								<div class="checkout__input">
+									<p>Address<span>*</span></p>
+									<input type="text" name="address">
+								</div>
+
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="checkout__input">
+											<p>Pincode<span>*</span></p>
+											<input type="text" name="pincode">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="checkout__input">
+											<p>Phone<span>*</span></p>
+											<input type="text" name="phone">
+										</div>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-dark">Save</button>
+							</form>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="checkout__order">
+							<h4 class="order__title">Your order</h4>
+							<div class="checkout__order__products">Product <span>Total</span></div>
+							<ul class="checkout__total__products">
+								<% for(let i=0 ; i< userCart.products.length ; i++) { %>
+									<li>
+										<%=[i+1]%>.<%= userCart.products[i].name %> x <%= userCart.products[i].quantity
+													%><span>
+														<%=userCart.products[i].price %>
+													</span>
+									</li>
+									<% }; %>
+
+							</ul>
+							<ul class="checkout__total__all">
+								<li>Subtotal <span>Rs <%= userCart.Total%></span></li>
+								<li>Coupon Discount <span id="discountAmount">
+										Rs <%= userCart.discountPrice%>
+									</span></li>
+								<li>Total <span id="payableamount">Rs <%= userCart.Total-userCart.discountPrice%></span></li>
+							</ul>
+
+
+							<div class="checkout__input__checkbox">
+								<label for="payment">
+									Cash On Delivery
+									<input type="radio" id="payment" name="payment" value="cash on Delivery" required>
+									<span class="checkmark"></span>
+								</label>
+							</div>
+							<div class="checkout__input__checkbox">
+								<label for="paypal">
+									Paytm
+									<input type="radio" id="paypal" name="payment" value="Paytm" required>
+									<span class="checkmark"></span>
+								</label>
+							</div>
+							<button type="submit" class="site-btn">PLACE ORDER</button>
+							</form>
+						</div>
+					</div>
+
+					<form action="/apply-code" method="post" id="couponForm">
+						<div class="flex-w flex-m m-r-20 m-tb-5 " style="justify-content: flex-end;">
+
+							<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text"
+								name="couponcode" placeholder="Coupon Code">
+							<input type="hidden" name="cart_id" value="<%= userCart._id %>">
+							<div
+								class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+								<button type="submit" id="removeCoupon">Apply coupon</button>
+							</div>
+							<br>
+						</div>
+							<p style="color: rgb(0, 0, 0);" id="couponmessage" class="text-end"></p>
 					</form>
-					</div>
 				</div>
+
 			</div>
 		</div>
-	</div>
-	<!-- end check out section -->
+	</section>
+	<!-- Checkout Section End -->
+	<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 
-	<!-- logo carousel -->
-	<div class="logo-carousel-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo-carousel-inner">
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/1.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/2.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/3.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/4.png" alt="">
-						</div>
-						<div class="single-logo-item">
-							<img src="assets/img/company-logos/5.png" alt="">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end logo carousel -->
+	<script>
 
-	<!-- footer -->
-	<div class="footer-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box about-widget">
-						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium
-							doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box get-in-touch">
-						<h2 class="widget-title">Get in Touch</h2>
-						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box pages">
-						<h2 class="widget-title">Pages</h2>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="services.html">Shop</a></li>
-							<li><a href="news.html">News</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
-						<h2 class="widget-title">Subscribe</h2>
-						<p>Subscribe to our mailing list to get the latest updates.</p>
-						<form action="index.html">
-							<input type="email" placeholder="Email">
-							<button type="submit"><i class="fas fa-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end footer -->
+		$('#couponForm').submit(function (event) {
+			// prevent the default form submission
+			event.preventDefault();
 
-	<!-- copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>, All Rights
-						Reserved.</p>
-				</div>
-				<div class="col-lg-6 text-right col-md-12">
-					<div class="social-icons">
-						<ul>
-							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end copyright -->
+			// get the coupon code from the input field
+			var couponCode = $('input[name="couponcode"]').val();
+			var cartID = $('input[name="cart_id"]').val();
+			// send an AJAX request to apply the coupon
+			$.ajax({
+				url: '/apply-code',
+				type: 'POST',
+				data: { couponCode: couponCode, cartID: cartID },
+				success: function (data) {
+					// update the UI with the discount information
+					
+					if(data.minimum){
+						$('#couponmessage').text(data.message);
+					}
+					else if (data.invalid) {
+						$('#couponmessage').text(data.message);
+					}
+					else if (!data.removed) {
+						$('#discountAmount').text('Rs ' + data.discountAmount);
+						$('#payableamount').text('Rs ' + data.afterdiscount);
+						$('#removeCoupon').text('Remove Coupon');
+						$('#couponmessage').text(data.message);
 
-	<!-- jquery -->
-	<script src="assets/js/jquery-1.11.3.min.js"></script>
-	<!-- bootstrap -->
-	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- count down -->
-	<script src="assets/js/jquery.countdown.js"></script>
-	<!-- isotope -->
-	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-	<!-- waypoints -->
-	<script src="assets/js/waypoints.js"></script>
-	<!-- owl carousel -->
-	<script src="assets/js/owl.carousel.min.js"></script>
-	<!-- magnific popup -->
-	<script src="assets/js/jquery.magnific-popup.min.js"></script>
-	<!-- mean menu -->
-	<script src="assets/js/jquery.meanmenu.min.js"></script>
-	<!-- sticker js -->
-	<script src="assets/js/sticker.js"></script>
-	<!-- main js -->
-	<script src="assets/js/main.js"></script>
+					} else {
+						location.reload()
+					}
+				}
+			});
+		});
 
-</body>
 
-</html>
+	</script>
+
+
+
+	<%- include('../layouts/userFooter.ejs') %>
