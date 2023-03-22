@@ -40,6 +40,10 @@ user_route.get('/shop',shopController.loadProductPage)
 
 user_route.get('/product',shopController.loadSingleProduct)
 
+user_route.post('/add-wishlist',auth.isLogin ,shopController.addToWishList)
+
+user_route.get('/remove-wishlist',auth.isLogin ,shopController.removeFromWishlist)
+
 user_route.get('/add-cart',auth.isLogin ,shopController.addingToCart)
 
 user_route.get('/remove-cart',auth.isLogin ,shopController.removeFromCart)
@@ -51,6 +55,8 @@ user_route.post('/change-product-quantity', shopController.changeQuantity)
 user_route.post('/apply-code', shopController.applyCouponCode)
 
 user_route.get('/checkout',auth.isLogin,shopController.loadCheckOutPage)
+
+user_route.post('/checkout_address',auth.isLogin,shopController.saveCheckOutAddress)
 
 user_route.post('/checkout',auth.isLogin,shopController.orderplaced)
 
