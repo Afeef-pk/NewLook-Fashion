@@ -1,304 +1,273 @@
-<%- include('../layouts/userHeader.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
-	<!-- Header -->
-	<header class="header-v4">
-		<!-- Header desktop -->
-		<div class="container-menu-desktop">
-			<!-- Topbar -->
-			<div class="top-bar">
-				<div class="content-topbar flex-sb-m h-full container">
-					<div class="left-top-bar">
-						Free shipping for standard order over $100
-					</div>
+	<!-- title -->
+	<title>Contact</title>
 
-					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							My Account
-						</a>
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="assets/css/all.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="assets/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="assets/css/responsive.css">
+
+</head>
+<body>
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="assets/img/logo.png" alt="">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li ><a href="/home">Home</a></li>
+								<li><a href="/shop">Shop</a></li>
+								<li><a href="/cart">Cart</a></li>
+								<li><a href="/orders">Orders</a></li>
+								<li><a href="/wishlist">wishlist</a></li>
+								<li class="current-list-item"><a href="/contact">Contact</a></li>
+								
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+									</div>
+								</li>
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<!-- end header -->
 
-			<div class="wrap-menu-desktop">
-				<nav class="limiter-menu-desktop container">
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>Search For:</h3>
+							<input type="text" placeholder="Keywords">
+							<button type="submit">Search <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search arewa -->
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Get 24/7 Support</p>
+						<h1>Contact us</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
 
-					<!-- Logo desktop -->
-					<a href="#" class="logo">
-						<img src="assets/images/icons/logo-01.png" alt="IMG-LOGO">
-					</a>
+	<!-- contact form -->
+	<div class="contact-from-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mb-5 mb-lg-0">
+					<div class="form-title">
+						<h2>Have you any question?</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+					</div>
+				 	<div id="form_status"></div>
+					<div class="contact-form">
+						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+							<p>
+								<input type="text" placeholder="Name" name="name" id="name">
+								<input type="email" placeholder="Email" name="email" id="email">
+							</p>
+							<p>
+								<input type="tel" placeholder="Phone" name="phone" id="phone">
+								<input type="text" placeholder="Subject" name="subject" id="subject">
+							</p>
+							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
+							<input type="hidden" name="token" value="FsWga4&@f6aw" />
+							<p><input type="submit" value="Submit"></p>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="contact-form-wrap">
+						<div class="contact-form-box">
+							<h4><i class="fas fa-map"></i> Shop Address</h4>
+							<p>34/8, East Hukupara <br> Gifirtok, Sadan. <br> Country Name</p>
+						</div>
+						<div class="contact-form-box">
+							<h4><i class="far fa-clock"></i> Shop Hours</h4>
+							<p>MON - FRIDAY: 8 to 9 PM <br> SAT - SUN: 10 to 8 PM </p>
+						</div>
+						<div class="contact-form-box">
+							<h4><i class="fas fa-address-book"></i> Contact</h4>
+							<p>Phone: +00 111 222 3333 <br> Email: support@fruitkha.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end contact form -->
 
-					<!-- Menu desktop -->
-					<div class="menu-desktop">
-						<ul class="main-menu">
-							<li >
-								<a href="/">Home</a>
-							</li>
+	<!-- find our location -->
+	<div class="find-location blue-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<p> <i class="fas fa-map-marker-alt"></i> Find Our Location</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end find our location -->
 
-							<li>
-								<a href="/shop">Shop</a>
-							</li>
-
-							<li >
-								<a href="/cart">Cart</a>
-							</li>
-
-							<li class="active-menu">
-								<a href="/contact">Contact</a>
-							</li>
+	<!-- google map section -->
+	<div class="embed-responsive embed-responsive-21by9">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26432.42324808999!2d-118.34398767954286!3d34.09378509738966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bf07045279bf%3A0xf67a9a6797bdfae4!2sHollywood%2C%20Los%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1576846473265!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" class="embed-responsive-item"></iframe>
+	</div>
+	<!-- end google map section -->
 
 
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">About us</h2>
+						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">Get in Touch</h2>
+						<ul>
+							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
+							<li>support@fruitkha.com</li>
+							<li>+00 111 222 3333</li>
 						</ul>
 					</div>
-
-					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div>
-
-
-						<% if(typeof userCart =='undefined' ){ %>
-							<a href="/cart"
-								class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-								data-notify="0">
-								<i class="zmdi zmdi-shopping-cart"></i>
-							</a>
-	
-							<a href="/wishlist"
-								class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-								data-notify="0">
-								<i class="zmdi zmdi-favorite-outline"></i>
-							</a>
-							<% } else { %>
-								<a href="/cart"
-								class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-								data-notify="<%= userCart.products.length %>">
-								<i class="zmdi zmdi-shopping-cart"></i>
-							</a>
-	
-							<a href="/wishlist"
-								class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-								data-notify="0">
-								<i class="zmdi zmdi-favorite-outline"></i>
-							</a>
-							<% } %>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">Pages</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="services.html">Shop</a></li>
+							<li><a href="news.html">News</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
 					</div>
-				</nav>
-			</div>
-		</div>
-
-		
-<!-- Header Mobile -->
-<div class="wrap-header-mobile">
-	<!-- Logo moblie -->		
-	<div class="logo-mobile">
-		<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
-	</div>
-
-	<!-- Icon header -->
-	<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-		<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-			<i class="zmdi zmdi-search"></i>
-		</div>
-
-		<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-			<i class="zmdi zmdi-shopping-cart"></i>
-		</div>
-
-		<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-			<i class="zmdi zmdi-favorite-outline"></i>
-		</a>
-	</div>
-
-	<!-- Button show menu -->
-	<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-		<span class="hamburger-box">
-			<span class="hamburger-inner"></span>
-		</span>
-	</div>
-</div>
-
-
-<!-- Menu Mobile -->
-<div class="menu-mobile">
-	<ul class="topbar-mobile">
-		<li>
-			<div class="left-top-bar">
-				Free shipping for standard order over $100
-			</div>
-		</li>
-
-		<li>
-			<div class="right-top-bar flex-w h-full">
-				<a href="#" class="flex-c-m p-lr-10 trans-04">
-					Help & FAQs
-				</a>
-
-				<a href="#" class="flex-c-m p-lr-10 trans-04">
-					My Account
-				</a>
-
-				<a href="#" class="flex-c-m p-lr-10 trans-04">
-					EN
-				</a>
-
-				<a href="#" class="flex-c-m p-lr-10 trans-04">
-					USD
-				</a>
-			</div>
-		</li>
-	</ul>
-
-	<ul class="main-menu-m">
-		<li>
-			<a href="index.html">Home</a>
-			<ul class="sub-menu-m">
-				<li><a href="index.html">Homepage 1</a></li>
-				<li><a href="home-02.html">Homepage 2</a></li>
-				<li><a href="home-03.html">Homepage 3</a></li>
-			</ul>
-			<span class="arrow-main-menu-m">
-				<i class="fa fa-angle-right" aria-hidden="true"></i>
-			</span>
-		</li>
-
-		<li>
-			<a href="product.html">Shop</a>
-		</li>
-
-		<li>
-			<a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
-		</li>
-
-		<li>
-			<a href="blog.html">Blog</a>
-		</li>
-
-		<li>
-			<a href="about.html">About</a>
-		</li>
-
-		<li>
-			<a href="contact.html">Contact</a>
-		</li>
-	</ul>
-</div>
-
-<!-- Modal Search -->
-<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-	<div class="container-search-header">
-		<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-			<img src="images/icons/icon-close2.png" alt="CLOSE">
-		</button>
-
-		<form class="wrap-search-header flex-w p-l-15">
-			<button class="flex-c-m trans-04">
-				<i class="zmdi zmdi-search"></i>
-			</button>
-			<input class="plh3" type="text" name="search" placeholder="Search...">
-		</form>
-	</div>
-</div>
-</header>
-
-<!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('assets/images/bg-01.jpg');">
-<h2 class="ltext-105 cl0 txt-center">
-	Contact
-</h2>
-</section>	
-
-
-<!-- Content page -->
-<section class="bg0 p-t-104 p-b-116">
-<div class="container">
-	<div class="flex-w flex-tr">
-		<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-			<form>
-				<h4 class="mtext-105 cl2 txt-center p-b-30">
-					Send Us A Message
-				</h4>
-
-				<div class="bor8 m-b-20 how-pos4-parent">
-					<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
-					<img class="how-pos4 pointer-none" src="assets/images/icons/icon-email.png" alt="ICON">
 				</div>
-
-				<div class="bor8 m-b-30">
-					<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
-				</div>
-
-				<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-					Submit
-				</button>
-			</form>
-		</div>
-
-		<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
-			<div class="flex-w w-full p-b-42">
-				<span class="fs-18 cl5 txt-center size-211">
-					<span class="lnr lnr-map-marker"></span>
-				</span>
-
-				<div class="size-212 p-t-2">
-					<span class="mtext-110 cl2">
-						Address
-					</span>
-
-					<p class="stext-115 cl6 size-213 p-t-18">
-						Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
-					</p>
-				</div>
-			</div>
-
-			<div class="flex-w w-full p-b-42">
-				<span class="fs-18 cl5 txt-center size-211">
-					<span class="lnr lnr-phone-handset"></span>
-				</span>
-
-				<div class="size-212 p-t-2">
-					<span class="mtext-110 cl2">
-						Lets Talk
-					</span>
-
-					<p class="stext-115 cl1 size-213 p-t-18">
-						+1 800 1236879
-					</p>
-				</div>
-			</div>
-
-			<div class="flex-w w-full">
-				<span class="fs-18 cl5 txt-center size-211">
-					<span class="lnr lnr-envelope"></span>
-				</span>
-
-				<div class="size-212 p-t-2">
-					<span class="mtext-110 cl2">
-						Sale Support
-					</span>
-
-					<p class="stext-115 cl1 size-213 p-t-18">
-						contact@example.com
-					</p>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">Subscribe</h2>
+						<p>Subscribe to our mailing list to get the latest updates.</p>
+						<form action="index.html">
+							<input type="email" placeholder="Email">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</section>	
-
-
-<!-- Map -->
-<div class="map">
-<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-</div>
-
-
-<!-- Back to top -->
-<div class="btn-back-to-top" id="myBtn">
-<span class="symbol-btn-back-to-top">
-	<i class="zmdi zmdi-chevron-up"></i>
-</span>
-</div>
-
-<%- include('../layouts/userFooter.ejs') %>
+	<!-- end footer -->
+	
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.</p>
+				</div>
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+	
+	<!-- jquery -->
+	<script src="assets/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="assets/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="assets/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="assets/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="assets/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="assets/js/sticker.js"></script>
+	<!-- form validation js -->
+	<script src="assets/js/form-validate.js"></script>
+	<!-- main js -->
+	<script src="assets/js/main.js"></script>
+	
+</body>
+</html>
