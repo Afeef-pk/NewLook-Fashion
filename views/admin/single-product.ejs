@@ -113,7 +113,13 @@
 									</div>
 									<div class="col-sm-9">
 										<p class="mb-0 text-black fw-bold">
+											<%if (product.category == null) {%>
+												
+										<%	} else {%>
 											<%= product.category.categoryName %>
+											<%}%>
+											
+											
 										</p>
 									</div>
 								</div>
@@ -147,10 +153,11 @@
 							<a href="/admin/edit_product?id=<%= product._id %>"><button
 									class="btn btn-success">Edit</button></a>
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-							<button onclick="softDelete()" class="btn btn-danger">Delete</button>
-
-
-
+							<% if (product.disabled) {%>
+								<a href="/admin/delete_product?id=<%= product._id %>"><button  class="btn btn-success">Enable</button></a>
+							<% } else {%>
+								<button onclick="softDelete()" class="btn btn-danger">Disable</button>
+							<% } %>
 							<script>
 								function softDelete() {
 									Swal.fire({

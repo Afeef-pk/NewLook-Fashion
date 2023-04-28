@@ -62,7 +62,7 @@
 											<p class="mb-0">Product Name</p>
 										</div>
 										<div class="col-sm-9">
-											<p class="text-muted mb-0 text-black"> <input type="text" name="name"
+											<p class="text-muted mb-0 text-black"> <input type="text" name="name" id="name"
 													required value="<%=product.name%>"> </p>
 										</div>
 									</div>
@@ -72,7 +72,7 @@
 											<p class="mb-0">Price</p>
 										</div>
 										<div class="col-sm-9">
-											<p class="text-muted mb-0"> <input type="text" name="price" required value="<%=product.price %>"> </p>
+											<p class="text-muted mb-0"> <input type="text" id="price" name="price" required value="<%=product.price %>"> </p>
 										</div>
 									</div>
 									<br><br>
@@ -83,7 +83,12 @@
 										<div class="col-sm-9">
 											<p class="text-muted mb-0">
 												<select id="lang" name="category">
-													<option value="<%=product.category._id %>"><%=product.category.categoryName %></option>
+													<%if (product.category == null) {%>
+														<option value=""></option>
+														<%	} else {%>
+															<option value="<%=product.category._id %>"><%=product.category.categoryName %></option>
+															<%}%>
+													
 													<% for(let i=0 ; i < category.length ; i++){ %>
 														<option value="<%=  category[i]._id  %>"><%=category[i].categoryName%> </option>
 													<% } %> 
@@ -110,7 +115,7 @@
 											<p class="mb-0">Stock</p>
 										</div>
 										<div class="col-sm-9">
-											<p class="text-muted mb-0"> <input type="text" name="stock" required value="<%= product.stock %>"></p>
+											<p class="text-muted mb-0"> <input type="text" id="stock" name="stock" required value="<%= product.stock %>"></p>
 										</div>
 									</div>
 
@@ -120,7 +125,7 @@
 											<p class="mb-0">Discription</p>
 										</div>
 										<div class="col-sm-9">
-											<p class="text-muted mb-0"> <textarea name="description" placeholder="Description"  required><%=product.description%></textarea>
+											<p class="text-muted mb-0"> <textarea name="description" id="description" placeholder="Description"  required><%=product.description%></textarea>
 											</p>
 										</div>
 										
@@ -141,7 +146,50 @@
 
 	</div>
 
+	<script>
+		document.getElementById("name").addEventListener("input", function () {
+			 var Uname = document.getElementById("name").value;
+	
+			 if (Uname.trim() == "") {
+			   document.getElementById("name").setCustomValidity("Product Name Can't be null");
+			 } else {
+			   document.getElementById("name").setCustomValidity("");
+			 }
+		   });
+	   
+		   document.getElementById("price").addEventListener("input" , function(){
+			 var price = document.getElementById("price").value
+			 if (price.trim() == "") {
+			   document.getElementById("price").setCustomValidity("Price can't be Null");
+			 } else if(isNaN(price)){
+			 document.getElementById("price").setCustomValidity("Price Must be a Number");
+			 }else {
+			   document.getElementById("price").setCustomValidity("");
+			 }
+		   })
 
+		   document.getElementById("stock").addEventListener("input" , function(){
+			 var stock = document.getElementById("stock").value
+			 if (stock.trim() == "") {
+			   document.getElementById("stock").setCustomValidity("Stock can't be Null");
+			 } else if(isNaN(stock)){
+			 document.getElementById("stock").setCustomValidity("Stock Must be a Number");
+			 }else {
+			   document.getElementById("stock").setCustomValidity("");
+			 }
+		   })
+	   
+		   document.getElementById("description").addEventListener("input", function () {
+			 var description = document.getElementById("description").value;
+	
+			 if (description.trim() == "") {
+			   document.getElementById("description").setCustomValidity("description Can't be null");
+			 } else {
+			   document.getElementById("description").setCustomValidity("");
+			 }
+		   });
+		 
+		 </script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 

@@ -62,8 +62,8 @@
                                             <p class="mb-0">Category Name</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0 text-black"> <input type="text" name="categoryname"
-                                                    required> </p>
+                                            <p class="text-muted mb-0 text-black"> <input type="text"
+                                                    name="categoryname" required id="categoryname"> </p>
                                         </div>
                                     </div>
                                     <br><br>
@@ -73,23 +73,23 @@
                                             <p class="mb-0">Image</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0 text-black"> <input type="file" name="image"
-                                                    required> </p>
+                                            <p class="text-muted mb-0 text-black"> <input type="file" name="image"> </p>
                                         </div>
                                     </div>
                                     <br><br>
-                                    
 
-<% if(typeof message !=='undefined' ){ %>
-    <div class="alert alert-danger">
-      <strong>
-        <%= message %>
-      </strong>
-    </div>
-    <% } %>
-                                    <div class="d-flex  "><button class="btn btn-primary d-flex jus" type="submit">Add
-                                            New Category</button>
-                                    </div>
+
+                                    <% if(typeof message !=='undefined' ){ %>
+                                        <div class="alert alert-danger">
+                                            <strong>
+                                                <%= message %>
+                                            </strong>
+                                        </div>
+                                        <% } %>
+                                            <div class="d-flex  "><button class="btn btn-primary d-flex jus"
+                                                    type="submit">Add
+                                                    New Category</button>
+                                            </div>
                             </div>
                         </div>
 
@@ -100,7 +100,17 @@
         </section>
 
     </div>
-
+<script>
+    document.getElementById("categoryname").addEventListener("input", function () {
+			 var Uname = document.getElementById("categoryname").value;
+	
+			 if (Uname.trim() == "") {
+			   document.getElementById("categoryname").setCustomValidity("Category Name Can't be null");
+			 } else {
+			   document.getElementById("categoryname").setCustomValidity("");
+			 }
+		   });
+</script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>

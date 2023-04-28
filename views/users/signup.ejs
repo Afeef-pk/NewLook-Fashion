@@ -1,4 +1,19 @@
-<%- include('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DECORE FASHIONS</title>
+
+  <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="/stylesheet/loginstyle.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
 
   <!-- Section: Design Block -->
   <section class="background-radial-gradient overflow-hidden ">
@@ -8,7 +23,7 @@
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
           <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
             Welcome to <br />
-            <span style="color: hsl(218, 81%, 75%)">shopname</span>
+            <span style="color: hsl(218, 81%, 75%)">DECORE FASHIONS</span>
           </h1>
         </div>
 
@@ -18,43 +33,44 @@
 
           <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
-              <form action="" method="POST" onsubmit=" return  verifyPassword()">
+              <form action="" method="POST" id="registerForm">
                 <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class="row">
 
                   <h1 class="mb-3 h3">Register</h1>
                   <div class="col-md-12 mb-3">
                     <div class="form-outline">
-                      <input type="text" name="name" id="form3Example2" class="form-control" required />
+                      <input type="text" name="name" id="fullName" class="form-control" required />
                       <label class="form-label" for="form3Example2">Full Name</label>
                     </div>
+                    <p id="namemessage" style="color: red;"> </p>
                   </div>
                 </div>
 
                 <!-- Email input -->
                 <div class="form-outline mb-3">
-                  <input type="email" name="email" id="form3Example3" class="form-control" required />
+                  <input type="email" name="email" id="ema" class="form-control" required />
                   <label class="form-label" for="form3Example3">Email address</label>
                 </div>
-
+                <p id="emailmessage" style="color: red;"> </p>
                 <!-- Mobile input -->
                 <div class="form-outline mb-3">
-                  <input type="text" name="phone" id="form3Example4" class="form-control" required />
+                  <input type="text" name="phone" id="mobile" class="form-control" required />
                   <label class="form-label" for="form3Example3">Mobile No</label>
                 </div>
-
+                <p id="mobilemessage" style="color: red;"> </p>
                 <!-- Password input -->
                 <div class="form-outline mb-3">
-                  <input type="password" name="password" class="form-control" id="p1" required />
+                  <input type="password" name="password" class="form-control" id="password" required />
                   <label class="form-label" for="form3Example4">Password</label>
                 </div>
-
+                <p id="passwordmessage" style="color: red;"> </p>
                 <!-- confirm Password input -->
                 <div class="form-outline mb-3">
-                  <input type="password" class="form-control" id="p2" required />
+                  <input type="password" class="form-control" id="password2" required />
                   <label class="form-label" for="form3Example4">Confirm Password</label>
                 </div>
-                <p id="message" style="color: red;"> </p>
+                <p id="cpasswordmessage" style="color: red;"> </p>
 
                 <% if(typeof exist !=='undefined' ){ %>
                   <div class="alert alert-danger">
@@ -72,7 +88,7 @@
                       </h5>
                       <% } %>
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-block mb-3" onclick="checkpassword()">
+                        <button type="submit" class="btn btn-primary btn-block mb-3">
                           SIGN UP
                         </button>
 
@@ -88,4 +104,135 @@
     </div>
   </section>
   <!-- Section: Design Block -->
-  <%- include('../layouts/footer.ejs') %>
+  <script>
+ document.getElementById("fullName").addEventListener("input", function () {
+      var Uname = document.getElementById("fullName").value;
+      console.log(name)
+
+      if (Uname.trim() == "") {
+        document.getElementById("fullName").setCustomValidity("Name cannot be null");
+        console.log("Name null")
+      } else {
+        document.getElementById("fullName").setCustomValidity("");
+      }
+    });
+
+    document.getElementById("ema").addEventListener("input" , function(){
+      var email = document.getElementById("ema").value
+      var emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById("ema").setCustomValidity("Please enter a valid Email");
+      } else {
+        document.getElementById("ema").setCustomValidity("");
+      }
+    })
+
+    document.getElementById("mobile").addEventListener("input", function () {
+      var mobilenumber = document.getElementById("mobile").value;
+      console.log(mobilenumber)
+      console.log(isNaN(mobilenumber));
+      if (isNaN(mobilenumber)) {
+        document.getElementById("mobile").setCustomValidity("Mobile Number Can't be a String");
+        console.log("less than 10")
+      } else if (mobilenumber.trim().length < 10) {
+        document.getElementById("mobile").setCustomValidity("Mobile Digits less than 10");
+        console.log("less than 10")
+      } else if (mobilenumber.trim().length > 10) {
+        document.getElementById("mobile").setCustomValidity("Mobile Digits greater than 10");
+      } else {
+        document.getElementById("mobile").setCustomValidity("");
+      }
+    });
+
+
+    document.getElementById("password").addEventListener("input", function () {
+      console.log("password1")
+      var password = document.getElementById("password").value.trim();
+      var password2 = document.getElementById("password2").value.trim();
+      if (password == "") {
+        document.getElementById("password").setCustomValidity("Password Cannot be null");
+      } else if (password === password2) {
+        document.getElementById("password2").setCustomValidity("");
+      } else {
+        document.getElementById("password2").setCustomValidity("Passwords do not match.");
+      }
+    });
+
+    document.getElementById("password2").addEventListener("input", function () {
+      console.log("password2")
+      var password = document.getElementById("password").value.trim();
+      var password2 = document.getElementById("password2").value.trim();
+      if (password2 == "") {
+        document.getElementById("password2").setCustomValidity("Password Cannot be null");
+      } else if (password === password2) {
+        document.getElementById("password2").setCustomValidity("");
+      } else {
+        document.getElementById("password2").setCustomValidity("Passwords do not match.");
+      }
+    });
+  </script>
+  <!-- <script>
+    const form = document.getElementById("registerForm");
+
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      let name = document.getElementById('fullName').value.trim()
+      let email = document.getElementById('ema').value
+      let mobile = document.getElementById('mobile').value
+      let password = document.getElementById('p1').value.trim()
+      let confirmpassword = document.getElementById('p2').value;
+
+      let nameMessage = document.getElementById("namemessage");
+      let emailMessage = document.getElementById("emailmessage");
+      let mobileMessage = document.getElementById("mobilemessage");
+      let passwordMessage = document.getElementById("passwordmessage");
+      let cPasswordMessage = document.getElementById("cpasswordmessage");
+
+      var emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      console.log(mobile);
+      console.log(isNaN(mobile));
+      if (name.trim() == "") {
+        nameMessage.textContent = "Name can't be null"
+        return
+      } else if (!emailRegex.test(email)) {
+        emailmessage.textContent = "Please Enter a Valid Email Address"
+        return
+      } else if (isNaN(mobile)) {
+        mobileMessage.textContent = "Mobile Number Can't be String"
+        return
+      }
+
+    });
+
+
+    function validation() {
+
+
+      // else if(password.trim() == "" ){
+      //    message.textContent ="passwords do not match"
+      //  }else if(password.length<6){
+      //     message.textContent ="passwords should have atleast 6 characters"
+      // }
+
+    }
+    function verifyPassword() {
+      let password = document.getElementById('p1').value;
+      let confirmpassword = document.getElementById('p2').value;
+      if (password === confirmpassword && password.length >= 6) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+  </script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

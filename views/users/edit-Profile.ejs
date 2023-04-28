@@ -1,5 +1,4 @@
 <%- include('../layouts/userHeader.ejs') %>
-
     <!-- Header -->
     <header class="header-v4">
         <!-- Header desktop -->
@@ -8,11 +7,10 @@
             <div class="top-bar">
                 <div class="content-topbar flex-sb-m h-full container">
                     <div class="left-top-bar">
-                        Free shipping for standard order over $100
+                        Free shipping for standard order over ₹ 1000
                     </div>
-
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        <a href="/profile" class="flex-c-m trans-04 p-lr-25">
                             My Account
                         </a>
                     </div>
@@ -21,9 +19,8 @@
 
             <div class="wrap-menu-desktop">
                 <nav class="limiter-menu-desktop container">
-
                     <!-- Logo desktop -->
-                    <a href="#" class="logo">
+                    <a href="/" class="logo">
                         <img src="assets/images/icons/logo-01.png" alt="IMG-LOGO">
                     </a>
 
@@ -33,27 +30,23 @@
                             <li>
                                 <a href="/">Home</a>
                             </li>
-
                             <li>
                                 <a href="/shop">Shop</a>
                             </li>
-
                             <li>
                                 <a href="/cart">Cart</a>
                             </li>
-
-                            <li >
+                            <li>
                                 <a href="/contact">Contact</a>
                             </li>
-
                             <li class="active-menu">
-								<a href="/">My Account</a>
-								       <ul class="sub-menu">
-											<li><a href="/profile">Profile</a></li>
-											<li><a href="/logout">Logout</a></li>
-										</ul>
-							</li>
-
+                                <a href="/profile">My Account</a>
+                                <ul class="sub-menu">
+                                    <li><a href="/profile">Profile</a></li>
+                                    <li><a href="/orders">Orders</a></li>
+                                    <li><a href="/logout">Logout</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
 
@@ -63,18 +56,11 @@
                             <i class="zmdi zmdi-search"></i>
                         </div>
 
-
-                        <% if(typeof userCart=='undefined' ){ %>
+                        <% if(!userCart ){ %>
                             <a href="/cart"
                                 class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
                                 data-notify="0">
                                 <i class="zmdi zmdi-shopping-cart"></i>
-                            </a>
-
-                            <a href="/wishlist"
-                                class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-                                data-notify="0">
-                                <i class="zmdi zmdi-favorite-outline"></i>
                             </a>
                             <% } else { %>
                                 <a href="/cart"
@@ -82,24 +68,31 @@
                                     data-notify="<%= userCart.products.length %>">
                                     <i class="zmdi zmdi-shopping-cart"></i>
                                 </a>
-
-                                <a href="/wishlist"
-                                    class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-                                    data-notify="0">
-                                    <i class="zmdi zmdi-favorite-outline"></i>
-                                </a>
                                 <% } %>
+
+                                    <% if(!wishlist ){ %>
+                                        <a href="/wishlist"
+                                            class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                                            data-notify="0">
+                                            <i class="zmdi zmdi-favorite-outline"></i>
+                                        </a>
+                                        <% } else { %>
+                                            <a href="/wishlist"
+                                                class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                                                data-notify="<%= wishlist.products.length %>">
+                                                <i class="zmdi zmdi-favorite-outline"></i>
+                                            </a>
+                                            <% } %>
                     </div>
                 </nav>
             </div>
         </div>
 
-
         <!-- Header Mobile -->
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+                <a href="/"><img src="assets/images/icons/logo-01.png" alt="IMG-LOGO"></a>
             </div>
 
             <!-- Icon header -->
@@ -108,15 +101,35 @@
                     <i class="zmdi zmdi-search"></i>
                 </div>
 
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                    data-notify="2">
-                    <i class="zmdi zmdi-shopping-cart"></i>
-                </div>
+                <% if(!userCart ){ %>
+                    <a href="/cart">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti "
+                            data-notify="0">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </div>
+                    </a>
+                    <% } else { %>
+                        <a href="/cart">
+                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti "
+                                data-notify="<%= userCart.products.length %>">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+                        </a>
+                        <% } %>
 
-                <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-                    data-notify="0">
-                    <i class="zmdi zmdi-favorite-outline"></i>
-                </a>
+                            <% if(!wishlist ){ %>
+                                <a href="/wishlist"
+                                    class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+                                    data-notify="0">
+                                    <i class="zmdi zmdi-favorite-outline"></i>
+                                </a>
+                                <% } else { %>
+                                    <a href="/wishlist"
+                                        class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+                                        data-notify="<%= wishlist.products.length %>">
+                                        <i class="zmdi zmdi-favorite-outline"></i>
+                                    </a>
+                                    <% } %>
             </div>
 
             <!-- Button show menu -->
@@ -127,68 +140,48 @@
             </div>
         </div>
 
-
         <!-- Menu Mobile -->
         <div class="menu-mobile">
             <ul class="topbar-mobile">
                 <li>
                     <div class="left-top-bar">
-                        Free shipping for standard order over $100
-                    </div>
-                </li>
-
-                <li>
-                    <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            My Account
-                        </a>
-
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            EN
-                        </a>
-
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            USD
-                        </a>
+                        Free shipping for standard order over Rs 1000
                     </div>
                 </li>
             </ul>
-
             <ul class="main-menu-m">
                 <li>
-                    <a href="index.html">Home</a>
-                    <ul class="sub-menu-m">
-                        <li><a href="index.html">Homepage 1</a></li>
-                        <li><a href="home-02.html">Homepage 2</a></li>
-                        <li><a href="home-03.html">Homepage 3</a></li>
-                    </ul>
-                    <span class="arrow-main-menu-m">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </span>
+                    <a href="/">Home</a>
                 </li>
-
                 <li>
-                    <a href="product.html">Shop</a>
+                    <a href="/shop">Shop</a>
                 </li>
-
                 <li>
-                    <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+                    <a href="/cart">Cart</a>
                 </li>
-
                 <li>
-                    <a href="blog.html">Blog</a>
+                    <a href="/contact">Contact</a>
                 </li>
-
                 <li>
-                    <a href="about.html">About</a>
-                </li>
-
-                <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="/profile">My Account</a>
+                    <% if(typeof userData=='undefined' ){ %>
+                        <ul class="sub-menu-m">
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/signup">Register</a></li>
+                        </ul>
+                        <span class="arrow-main-menu-m">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                        <% } else { %>
+                            <ul class="sub-menu-m">
+                                <li><a href="/profile">Profile</a></li>
+                                <li><a href="/orders">Orders</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                            <span class="arrow-main-menu-m">
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </span>
+                            <% } %>
                 </li>
             </ul>
         </div>
@@ -197,9 +190,8 @@
         <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
             <div class="container-search-header">
                 <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="images/icons/icon-close2.png" alt="CLOSE">
+                    <img src="assets/images/icons/icon-close2.png" alt="CLOSE">
                 </button>
-
                 <form class="wrap-search-header flex-w p-l-15">
                     <button class="flex-c-m trans-04">
                         <i class="zmdi zmdi-search"></i>
@@ -210,35 +202,28 @@
         </div>
     </header>
 
-
-    <div id="page">
-        <nav class="fh5co-nav" role="navigation">
-
-        </nav>
-    </div>
-    <div class="container">
-        <div class="main-body">
-
-            <!-- Breadcrumb Section Begin -->
-            <section class="breadcrumb-option">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="breadcrumb__text">
-                                <h4>My Account</h4>
-                                <div class="breadcrumb__links">
-                                    <a href="/">Home</a>
-                                    <a href="/profile">Profile</a>
-                                    <span>Edit Profile</span>
-                                </div>
-                            </div>
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>My Account</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/">Home</a>
+                            <a href="/profile">Profile</a>
+                            <span>Edit Profile</span>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Breadcrumb Section End -->
-            <br><br><br>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
 
+    <div class="container">
+        <div class="main-body">
+            <br>
             <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
                     <div class="card">
@@ -246,7 +231,6 @@
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                     class="rounded-circle" width="150">
-
                                 <div class="mt-3">
                                     <h4>
                                         <%= user.name %>
@@ -261,44 +245,40 @@
                     <div class="card mt-3">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <i class="bi bi-cart-check-fill"></i>
-                                <a href="/orders">
-                                    <h6 class="mb-0">Orders</h6>
-                                </a>
-                                <span class="text-secondary"></span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <i class="bi bi-folder-plus"></i>
-                                <a href="/profile">
+                                <a href="/usraddress">
                                     <h6 class="mb-0">Saved address</h6>
                                 </a>
                                 <span class="text-secondary"></span>
                             </li>
-
-
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <i class="bi bi-cart-check-fill"></i>
+                                <a href="/orders">
+                                    <h6 class="mb-0">Your Orders</h6>
+                                </a>
+                                <span class="text-secondary"></span>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="card mb-3">
                         <div class="row">
-
                             <div class="col-lg-8">
                                 <div class="mb-3">
                                     <div class="card-body">
                                         <form action="" method="post">
-
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <p class="mb-0">Full Name</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <p class="text-muted mb-0 text-black"> 
-                                                        <input type="text"
-                                                            name="name" required value="<%= user.name%>"> </p>
+                                                    <p class="text-muted mb-0 text-black">
+                                                        <input type="text" id="name" name="name" required
+                                                            value="<%= user.name%>">
+                                                    </p>
                                                 </div>
-                                            </div>
-                                            <br>
+                                            </div><br>
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <p class="mb-0">E-Mail</p>
@@ -307,8 +287,7 @@
                                                     <p class="text-muted mb-0"> <input type="text" name="email" required
                                                             value="<%= user.email %>"> </p>
                                                 </div>
-                                            </div>
-                                            <br>
+                                            </div><br>
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <p class="mb-0">Mobile</p>
@@ -319,90 +298,85 @@
                                                                 width="20px">
                                                     </p>
                                                 </div>
-                                            </div>
-                                            <br>
+                                            </div><br>
                                             <% if(user.address[0]) {%>
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <p class="mb-0">Address Line</p>
                                                     </div>
-                                                </div>
-                                                <br>
+                                                </div><br>
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <p class="mb-0">Name</p>
                                                     </div>
-
                                                     <div class="col-sm-9">
                                                         <p class="text-muted mb-0"> <input type="text"
                                                                 name="addressname" required
                                                                 value="<%= user.address[0].name %>"> </p>
                                                     </div>
-                                                </div>
-                                                <br>
+                                                </div> <br>
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <p class="mb-0">Pincode</p>
                                                     </div>
-
                                                     <div class="col-sm-9">
                                                         <p class="text-muted mb-0"> <input type="text" name="pin"
                                                                 required value="<%= user.address[0].pincode %>">
                                                         </p>
                                                     </div>
-                                                </div>
-                                                <br>
+                                                </div><br>
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <p class="mb-0">LandMark</p>
                                                     </div>
-
                                                     <div class="col-sm-9">
                                                         <p class="text-muted mb-0"> <input type="text" name="landmark"
                                                                 required value="<%= user.address[0].landmark %>"> </p>
                                                     </div>
-                                                </div>
-                                                <br>
+                                                </div><br>
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <p class="mb-0">Address</p>
                                                     </div>
-
                                                     <div class="col-sm-9">
                                                         <p class="text-muted mb-0"> <input type="text" name="address"
                                                                 required value="<%= user.address[0].address %>"> </p>
                                                     </div>
-                                                </div>
-                                                <br>
+                                                </div><br>
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <p class="mb-0">Mobile</p>
                                                     </div>
-
                                                     <div class="col-sm-9">
                                                         <p class="text-muted mb-0"> <input type="text" name="mobile"
                                                                 required value="<%= user.address[0].mobile %>"> </p>
                                                     </div>
-                                                </div>
-                                                <br>
+                                                </div> <br>
                                                 <% } %>
                                                     <input type="hidden" name="user_id" value="<%= user._id %>">
                                                     <div class="d-flex  justify-content-center">
-                                                        <button class="btn btn-success d-flex jus"
-                                                            type="submit">Update</button>
+                                                        <button class="btn btn-dark d-flex jus"
+                                                            type="submit">Save</button>
                                                     </div>
-
+                                        </form>
                                     </div>
                                 </div>
-
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-    <br><br><br>
+    <br><br>
+    <script>
+        document.getElementById("name").addEventListener("input", function () {
+            var Uname = document.getElementById("name").value;
+            if (Uname.trim() == "") {
+                document.getElementById("name").setCustomValidity("Name cannot be null");
+            } else {
+                document.getElementById("name").setCustomValidity("");
+            }
+        });
+    </script>
     <%- include('../layouts/userFooter.ejs') %>

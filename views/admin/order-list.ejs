@@ -12,18 +12,14 @@
 		<a href="/admin/logout" class="icon-a"><i class="fa fa-user icons"></i> Logout</a>
 	</div>
 
-
 	<div id="main">
-
 		<div class="head">
 			<div class="col-div-6">
-				<span style="font-size:30px;cursor:pointer; color: white;" class="nav">☰ ORDER</span>
-				<span style="font-size:30px;cursor:pointer; color: white;" class="nav2">☰ ORDER</span>
+				<span style="font-size:30px;cursor:pointer; color: white;" class="nav">☰ ORDERS</span>
+				<span style="font-size:30px;cursor:pointer; color: white;" class="nav2">☰ ORDERS</span>
 			</div>
-
 			<div class="col-div-6">
 				<div class="profile">
-
 					<img src="https://w7.pngwing.com/pngs/429/434/png-transparent-computer-icons-icon-design-business-administration-admin-icon-hand-monochrome-silhouette-thumbnail.png"
 						class="pro-img" />
 					<p>ADMIN<span></span></p>
@@ -31,49 +27,53 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
-
 		<div class="clearfix"></div>
-		<br />
-
-
+		<br>
 		<div class="clearfix"></div>
-		<br />
+		<br>
 		<div class="col-div-8">
 			<div class="box-8">
 				<div class="content-box">
-
-
-
-					<br />
-					<div class="container-fluid">
-						<form class="d-flex">
-							<input class="form-control me-2" type="search" placeholder="Search Order "
-								aria-label="Search" name="search">
-							<button class="btn btn-outline-success" type="submit">Search</button>
-						</form>
-					</div>
 					<table>
 						<tr>
 							<th>Customer Name</th>
 							<th>Order id</th>
-							<th>Product Name</th>
-							<th>price</th>
-							<th>Status</th>
-
+							<th>Total</th>
+							<th>Payment Status</th>
+							<th>Order Status</th>
+							<th>View Details</th>
 						</tr>
-
-
-
+						<tbody>
+							<% for (let i=orders.length-1 ; i>=0 ; i--){ %>
+								<tr>
+									<td>
+										<%= orders[i].userID.name %>
+									</td>
+									<td>
+										<%= orders[i]._id %>
+									</td>
+									<td>
+										₹ <%= orders[i].Total %>
+									</td>
+									<td>
+										<%= orders[i].paymentStatus %>
+									</td>
+									<td>
+										<%= orders[i].orderStatus %>
+									</td>
+									<td>
+										<a href="/admin/view_order?id=<%= orders[i]._id  %>"><button
+												class="btn btn-primary">view</button></a>
+									</td>
+								</tr>
+								<% } %>
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-
-
-
 		<div class="clearfix"></div>
 	</div>
-
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>

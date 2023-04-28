@@ -53,8 +53,9 @@
 							<th>Discount</th>
 							<th>Minimum Purchase</th>
 							<th>Max Discount</th>
+							<th>Count</th>
+						
 							<th>Action</th>
-
 						</tr>
 						<% for( let i=0 ; i< coupons.length ; i++) { %>
 							<tr>
@@ -70,6 +71,8 @@
 								<th>
 									Rs <%= coupons[i].maxDiscount %>
 								</th>
+								<th><%= coupons[i].count %></th>
+								
 								<th><button class="btn btn-danger" onclick="softDelete()">Delete</button></a>
 							</tr>
 							<script>
