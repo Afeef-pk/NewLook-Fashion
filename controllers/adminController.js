@@ -3,8 +3,9 @@ const User = require('../models/userModel')
 const Product = require('../models/productModel')
 const Category = require('../models/categoryModel')
 const Coupon = require('../models/couponModel')
+const Order = require('../models/orderModel')
 const { name } = require('twilio')
-// load Login page
+
 const loadAdminLogin = async (req, res) => {
     try {
         res.render("adminLogin")
@@ -13,13 +14,11 @@ const loadAdminLogin = async (req, res) => {
     }
 }
 
-//admin verify
 const verifyLogin = async (req, res) => {
     try {
         const adminEmail = req.body.email
         const password = req.body.password
         const adminData = await Admin.findOne({ adminEmail: adminEmail })
-
         if (adminData) {
             if (password == adminData.adminPassword) {
                 req.session.admin_id = adminData._id
@@ -40,9 +39,43 @@ const verifyLogin = async (req, res) => {
 const loadDashboard = async (req, res) => {
 
     try {
-        const usersData = await User.find({})
-        const productData = await Product.find({})
-        res.render('dashboard', { users: usersData, product: productData })
+        const usersData = await User.find()
+        const productData = await Product.find()
+        const orders = await Order.find().populate('userID')
+        const totalSale = await Order.aggregate([
+            {
+                $match : {
+                   paymentStatus : "completed"
+                }
+            },
+            {
+                $group:
+                {
+                    _id: null,
+                    total: { $sum: '$Total' }
+                }
+            },
+            { $project: { _id: 0, total: 1 } }
+        ])
+       console.log(totalSale);
+        const recentOrders = await Order.aggregate([
+            {
+                $match: { paymentStatus: "completed" }
+            },
+            {
+                $lookup:
+                {
+                    from: "users",
+                    localField: "userID",
+                    foreignField: "_id",
+                    as: "user"
+                }
+            },
+            {
+                $unwind: "$user"
+            }
+        ])
+        res.render('dashboard', { users: usersData, product: productData, orders, totalSale, recentOrders })
     } catch (error) {
         console.log(error.message);
     }
@@ -54,7 +87,6 @@ const loadUser_Manage = async (req, res) => {
         if (req.query.search) {
             search = req.query.search
         }
-
         const usersData = await User.find({
             $or: [
                 { name: { $regex: '.*' + search + '.*', $options: 'i' } },
@@ -69,7 +101,6 @@ const loadUser_Manage = async (req, res) => {
     }
 }
 
-//view single  user details
 const loadUserDeatails = async (req, res) => {
 
     try {
@@ -80,11 +111,9 @@ const loadUserDeatails = async (req, res) => {
     }
 }
 
-//block a user
 const blockUser = async (req, res) => {
 
     try {
-
         if (req.body.flexRadioDefault == 1) {
             const updateInfo = await User.updateOne({ _id: req.body.user_id }, { $set: { is_blocked: 1 } })
             res.redirect('/admin/user_manage')
@@ -98,28 +127,20 @@ const blockUser = async (req, res) => {
     }
 }
 
-// load products
 const loadProducts = async (req, res) => {
     try {
-        var search = ''
+        let search = ''
         if (req.query.search) {
             search = req.query.search
         }
-        const productData = await Product.find({
-            $or: [
-                { name: { $regex: '.*' + search + '.*', $options: 'i' } },
-                { email: { $regex: '.*' + search + '.*', $options: 'i' } },
-                { mobile: { $regex: '.*' + search + '.*', $options: 'i' } }
-            ]
-        })
-
         const category = await Category.find({}, { _id: 1 })
-        // console.log(category);
         const cat = category.map(category => category._id)
-        // console.log(cat);
-        const product = await Product.find({ category: { $in: cat } }).populate('category')
+        const product = await Product.find({
+            $or: [
+                { name: { $regex: '.*' + search + '.*', $options: 'i' } }]
+        }).populate('category')
 
-        res.render('products', { product, productData })
+        res.render('products', { product })
     } catch (error) {
         console.log(error.message);
     }
@@ -142,7 +163,6 @@ const insertNewProduct = async (req, res) => {
         for (let i = 0; i < req.files.length; i++) {
             imageFile[i] = req.files[i].filename
         }
-
         const product = new Product({
             name: req.body.name,
             price: req.body.price,
@@ -163,7 +183,6 @@ const insertNewProduct = async (req, res) => {
     }
 }
 
-//load single product page
 const loadProductDeatails = async (req, res) => {
 
     try {
@@ -174,7 +193,6 @@ const loadProductDeatails = async (req, res) => {
     }
 }
 
-
 const loadEditProduct = async (req, res) => {
 
     try {
@@ -183,11 +201,9 @@ const loadEditProduct = async (req, res) => {
         const categoryData = await Category.find({})
         if (productData) {
             res.render('edit-product', { product: productData, category: categoryData })
-        }
-        else {
+        } else {
             res.redirect('/admin/product_manage')
         }
-
     } catch (error) {
         console.log(error.message);
     }
@@ -209,7 +225,6 @@ const updateProduct = async (req, res) => {
         } else {
             res.sendstatus(400)
         }
-
     } catch (error) {
         console.log(error.message);
     }
@@ -219,7 +234,12 @@ const deleteProduct = async (req, res) => {
 
     try {
         const id = req.query.id
-        await Product.deleteOne({ _id: id })
+        const product = await Product.findOne({ _id: id })
+        if (product.disabled) {
+            await Product.updateOne({ _id: id }, { $set: { disabled: false } })
+        } else {
+            await Product.updateOne({ _id: id }, { $set: { disabled: true } })
+        }
         res.redirect('/admin/product_manage')
     } catch (error) {
         console.log(error.message);
@@ -253,9 +273,13 @@ const addNewCategory = async (req, res) => {
         if (existCategory) {
             res.render('new-categories', { message: "Category already exist" })
         } else {
+            let img
+            if (req.file) {
+                img = req.file.filename
+            }
             const category = new Category({
                 categoryName: req.body.categoryname,
-                image: req.file.filename
+                image: img
             })
             const categoryData = await category.save()
             if (categoryData) {
@@ -283,10 +307,10 @@ const loadEditCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
 
     try {
-      if(req.file){
-        var image = req.file.filename
-      }
-        const categoryUpdatedData = await Category.findByIdAndUpdate({ _id: req.body.category_id }, { $set: { categoryName: req.body.categoryname,  image: image} })
+        if (req.file) {
+            var image = req.file.filename
+        }
+        const categoryUpdatedData = await Category.findByIdAndUpdate({ _id: req.body.category_id }, { $set: { categoryName: req.body.categoryname, image: image } })
         if (categoryUpdatedData) {
             res.redirect('/admin/category_manage')
         } else {
@@ -311,7 +335,34 @@ const deleteCategory = async (req, res) => {
 const orderListing = async (req, res) => {
 
     try {
-        res.render('order-list')
+        const orders = await Order.find().populate('userID')
+        res.render('order-list', { orders })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const loadOrderDeatails = async (req, res) => {
+
+    try {
+        const orderData = await Order.findOne({ _id: req.query.id }).populate('userID')
+        res.render('single-order', { orderData })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const updateOrderDeatails = async (req, res) => {
+
+    try {
+        const orderData = await Order.findByIdAndUpdate({ _id: req.query.id },
+            {
+                $set: {
+                    paymentStatus: req.body.paymentStatus,
+                    orderStatus: req.body.orderStatus,
+                }
+            })
+        res.redirect('/admin/orders')
     } catch (error) {
         console.log(error.message);
     }
@@ -340,7 +391,7 @@ const NewCoupon = async (req, res) => {
 
     try {
         const code = req.body.code
-        const existCoupon = await Coupon.findOne({ couponCode: { $regex: '.*' + code + '.*', $options: 'i' }})
+        const existCoupon = await Coupon.findOne({ couponCode: { $regex: '.*' + code + '.*', $options: 'i' } })
         
         if (existCoupon) {
             res.render('add-coupon', { message: "coupon already exist" })
@@ -348,9 +399,12 @@ const NewCoupon = async (req, res) => {
             const coupon = new Coupon({
                 couponCode: req.body.code,
                 discount: req.body.discount,
-                minAmount:req.body.minAmount,
-                maxDiscount:req.body.maxDiscount
+                minAmount: req.body.minAmount,
+                maxDiscount: req.body.maxDiscount,
+                count: req.body.count,
+                expire: new Date()
             })
+           
             const couponData = await coupon.save()
             if (couponData) {
                 res.redirect('/admin/coupons')
@@ -366,7 +420,6 @@ const NewCoupon = async (req, res) => {
 const deleteCoupons = async (req, res) => {
 
     try {
-         
         await Coupon.deleteOne({ _id: req.query.id })
         res.redirect('/admin/coupons')
     } catch (error) {
@@ -377,7 +430,7 @@ const deleteCoupons = async (req, res) => {
 const logout = async (req, res) => {
 
     try {
-        req.session.destroy()
+        delete req.session.admin_id
         res.redirect('/admin')
     } catch (error) {
         console.log(error.message);
@@ -408,6 +461,8 @@ module.exports = {
     updateCategory,
     deleteCategory,
     orderListing,
+    loadOrderDeatails,
+    updateOrderDeatails,
     couponManage,
     loadAddNewCoupon,
     NewCoupon,
